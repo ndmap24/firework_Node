@@ -53,9 +53,26 @@ exports.login = async (req,res)=>{
     });
 }
 exports.metaMaskAddress = async (req,res)=>{
-    console.log("jddjjdjdj");
+    console.log("222");
     var address = req.body.metaMaskAddress;
-    metaMaskAddress.findOne({metaMaskAddress:address},(err,getAddress)=>{
+    var accessToken = req.headers.authorization;
+    var userId;
+    console.log("accessToken",accessToken);
+    var token = accessToken && accessToken.split(' ')[1];
+    if (token == null) 
+        return res.sendStatus(401)
+    else{
+        console.log("token",token)
+        jwt.verify(token, process.env.SECRET, (err, user) => {
+            if (err) return res.sendStatus({status:false,message:"login user Id not found"})
+            else{
+                console.log("userId",user);
+                console.log("userId",user.data._id);
+                userId = user.data._id;
+            }
+        });
+    }
+    metaMaskAddress.findOneAndUpdate({_id:userId},{$set:{metaMaskAddress:address}},(err,getAddress)=>{
         if(err){
             console.log("err",err);
             res.json({
@@ -64,35 +81,10 @@ exports.metaMaskAddress = async (req,res)=>{
             });
         }
         else{
-            if(getAddress == null){
-                console.log("1")
-                const newUser = new metaMaskAddress({
-                    metaMaskAddress: address,
-                });
-                console.log("newUser",newUser);
-                newUser.save((err,saveData)=>{
-                    if(err){
-                        res.json({
-                            status:false,
-                            message:"Something is wrong. metaMaskAddress not Add"
-                        }); 
-                    }
-                    else{
-                        return res.json({
-                            statusCode:"200",
-                            statusMsj:"Successfuly Address Add",
-                            data:saveData
-                        });
-                    }
-                    
-                });
-            }
-            else{
-                return res.json({
-                    status: true,
-                    message:"Address Already Exist"
-                });
-            }
+            res.json({
+                "status":1,
+                "message":"Successfuly Added MetaMask Address",
+            });
         }
     });
 }

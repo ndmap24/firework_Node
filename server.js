@@ -49,4 +49,4 @@ app.use('/api',addMainAttribute);
 const PORT = 3000;
 
 
-app.listen(PORT, () => console.log(`server is listing on ${PORT}`))
+app.listen(PORT, () => console.log(`server is listing on ${PORT}`));

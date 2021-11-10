@@ -46,9 +46,9 @@ app.use('/api',addMainAttribute);
 
 
 
-const PORT = 5000;
-var server_host = '0.0.0.0';
-// app.listen(PORT, () => console.log(`server is listing on ${PORT}`));
-app.listen(PORT, server_host, function() {
-    console.log('Listening on port %d', PORT);
+const port = process.env.PORT || 8000;
+
+//Starting a server
+app.listen(process.env.PORT || 8000, () => {
+  console.log(`app is running at`,port);
 });

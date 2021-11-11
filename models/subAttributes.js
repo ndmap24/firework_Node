@@ -13,6 +13,10 @@ var subAttributesSchema = new Schema({
 		optional:false,
         trim: true
     },
+	image: {
+		type: String,
+		trim: true,
+	  },
     status:{
         type: Number,
         default:1

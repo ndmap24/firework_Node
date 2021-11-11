@@ -6,6 +6,7 @@ const {
     getCamps,
     addSubAttribute,
     addSubAttributesCards,
+    addCampImage,
 } = require("../controller/mainAttributes");
 
 router.post(
@@ -23,5 +24,9 @@ router.post(
 router.post(
   "/addSubAttributesCards",
   addSubAttributesCards
+);
+router.post(
+  "/addCampImage",
+  addCampImage
 );
 module.exports = router;

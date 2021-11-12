@@ -30,9 +30,10 @@ app.use('/card_character', require('./routs/packs/card_character'))
 //------- add address ------
 const addressAdd = require('./routs/metaMaskAddress');
 const addMainAttribute = require('./routs/mainAttributes');
+const addStarShip = require('./routs/starShip');
 app.use('/api',addressAdd);
 app.use('/api',addMainAttribute);
-
+app.use('/api',addStarShip);
 
 // if(process.env.NODE_ENV === 'production'){
 //   // Set static folder

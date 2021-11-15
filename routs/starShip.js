@@ -5,6 +5,7 @@ const{
     addStarShip,
     updateStarShipImage,
     getAllStarShip,
+    getOneStarShip,
 } = require('../controller/starShip');
 
 route.post(
@@ -19,5 +20,9 @@ route.get(
     '/getAllStarShip',
     getAllStarShip
 );
+route.post(
+    '/getOneStarShip',
+    getOneStarShip
+)
 
 module.exports = route

@@ -78,3 +78,21 @@ exports.getAllStarShip = async(req, res) =>{
         }
     });
 }
+
+exports.getOneStarShip = async(req, res) =>{  
+    const id = req.body.id;
+    getStarShip.findById(id,(err,starship)=>{
+        if(err){
+            res.json({
+                status:false,
+                message:"Somethis is Wrong"
+            });
+        }
+        else{
+            res.json({
+                status:1,
+                data:starship
+            })
+        }
+    });
+}
